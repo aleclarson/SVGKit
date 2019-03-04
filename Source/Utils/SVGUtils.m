@@ -6,6 +6,7 @@
 //
 
 #import "SVGUtils.h"
+#import "SVGKDefine.h"
 
 #define MAX_ACCUM 64
 #define NUM_COLORS 148
