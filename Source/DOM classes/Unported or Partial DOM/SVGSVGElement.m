@@ -231,7 +231,7 @@
 	else
 		self.width = [SVGLength svgLengthFromNSString:[self getAttribute:@"width"]];
     // logging
-    SVGKitLogVerbose(@"[%@] DEBUG INFO: set document viewBox = %@", [self class], NSStringFromSVGRect(self.viewBox));
+    SVGKitLogVerbose("[%@] DEBUG INFO: set document viewBox = %@", [self class], NSStringFromSVGRect(self.viewBox));
 }
 
 - (SVGElement *)findFirstElementOfClass:(Class)classParameter {

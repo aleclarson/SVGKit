@@ -4,23 +4,22 @@
 
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
-#import <CocoaLumberjack/CocoaLumberjack.h>
+#import <oslog/oslog.h>
 #import "SVGKDefine.h"
 
 // These macro is only used inside framework project, does not expose to public header and effect user's define
 
-#define SVGKIT_LOG_CONTEXT 556
-
-#define SVGKitLogError(frmt, ...)   LOG_MAYBE(NO,                LOG_LEVEL_DEF, DDLogFlagError,   SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
-#define SVGKitLogWarn(frmt, ...)    LOG_MAYBE(LOG_ASYNC_ENABLED, LOG_LEVEL_DEF, DDLogFlagWarning, SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
-#define SVGKitLogInfo(frmt, ...)    LOG_MAYBE(LOG_ASYNC_ENABLED, LOG_LEVEL_DEF, DDLogFlagInfo,    SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
-#define SVGKitLogDebug(frmt, ...)   LOG_MAYBE(LOG_ASYNC_ENABLED, LOG_LEVEL_DEF, DDLogFlagDebug,   SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
-#define SVGKitLogVerbose(frmt, ...) LOG_MAYBE(LOG_ASYNC_ENABLED, LOG_LEVEL_DEF, DDLogFlagVerbose, SVGKIT_LOG_CONTEXT, nil, __PRETTY_FUNCTION__, frmt, ##__VA_ARGS__)
+#define SVGKitLogError(frmt, ...)   os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_ERROR, frmt, ##__VA_ARGS__)
+#define SVGKitLogWarn(frmt, ...)    os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_INFO, frmt, ##__VA_ARGS__)
 
 #if DEBUG
-static const int ddLogLevel = DDLogLevelVerbose;
+#define SVGKitLogInfo(frmt, ...)    os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_INFO, frmt, ##__VA_ARGS__)
+#define SVGKitLogDebug(frmt, ...)   os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_INFO, frmt, ##__VA_ARGS__)
+#define SVGKitLogVerbose(frmt, ...) os_log_with_type(OS_LOG_DEFAULT, OS_LOG_TYPE_DEBUG, frmt, ##__VA_ARGS__)
 #else
-static const int ddLogLevel = DDLogLevelWarning;
+#define SVGKitLogInfo(frmt, ...)
+#define SVGKitLogDebug(frmt, ...)
+#define SVGKitLogVerbose(frmt, ...)
 #endif
 
 #if SVGKIT_MAC

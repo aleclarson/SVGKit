@@ -21,9 +21,6 @@
 // MARK: - Framework Header File Content
 
 @interface SVGKit : NSObject
-
-+ (void) enableLogging;
-
 @end
 
 //! Project version number for SVGKitFramework-iOS.
