@@ -264,8 +264,8 @@
 			CGContextTranslateCTM(context, i * tileSize.width, k * tileSize.height );
 			CGContextScaleCTM( context, scaleConvertImageToView.width, scaleConvertImageToView.height );
 
-			if ((tileSize.width == 1.0 && scaleConvertImageToView.width > 1.0) ||
-			    (tileSize.height == 1.0 && scaleConvertImageToView.height > 1.0)) {
+			if ((imageBounds.size.width == 1.0 && scaleConvertImageToView.width > 1.0) ||
+			    (imageBounds.size.height == 1.0 && scaleConvertImageToView.height > 1.0)) {
 				CGContextSetInterpolationQuality(context, kCGInterpolationNone);
 			}
 			
