@@ -1,5 +1,7 @@
 #import "SVGKImageView.h"
 
+NSString *const SVGKImageViewDidDrawNotification = @"SVGKImageViewDidDrawNotification";
+
 @implementation SVGKImageView
 
 @synthesize image = _image;
