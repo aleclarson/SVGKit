@@ -36,12 +36,12 @@
  */
 
 #import "SVGKDefine.h"
-#import "SVGKParser.h" // needed for asynchronous loading method-signature
 
 @class SVGDocument;
 @class SVGSVGElement;
 @class SVGKSource;
 @class SVGKParseResult;
+@class SVGKParser;
 
 #define ENABLE_GLOBAL_IMAGE_CACHE_FOR_SVGKIMAGE_IMAGE_NAMED 1 // if ENABLED, then ALL instances created with imageNamed: are shared, and are NEVER RELEASED
 
