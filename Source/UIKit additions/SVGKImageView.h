@@ -2,8 +2,6 @@
 
 #import "SVGKImage.h" // cannot import "SVGKit.h" because that would cause ciruclar imports
 
-extern NSString *const SVGKImageViewDidDrawNotification;
-
 /**
  * SVGKit's version of UIImageView - with some improvements over Apple's design. There are multiple versions of this class, for different use cases.
  

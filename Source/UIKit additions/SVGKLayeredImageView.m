@@ -4,7 +4,6 @@
 
 #import "SVGKSourceString.h"
 #import "SVGKInlineResource.h"
-#import "CATransaction+Private.h"
 
 @interface SVGKLayeredImageView()
 @property(nonatomic,strong) CAShapeLayer* internalBorderLayer;
@@ -71,36 +70,12 @@
     return self;
 }
 
-#if SVGKIT_MAC
-- (void)dealloc
-{
-  [self.layer removeObserver:self forKeyPath:@"endRenderTime"];
-}
-#endif
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-  if ([keyPath isEqualToString:@"endRenderTime"]) {
-    SVGKLayer *layer = object;
-    if (layer.endRenderTime) {
-      [CATransaction addCommitHandler:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:SVGKImageViewDidDrawNotification object:self];
-      } forPhase:kCATransactionPhasePostCommit];
-    }
-  }
-}
-
 - (void)populateFromImage:(SVGKImage*) im
 {
 #if SVGKIT_MAC
     // setup layer-hosting view
     self.layer = [[SVGKLayer alloc] init];
     self.wantsLayer = YES;
-    
-    [self.layer addObserver:self
-                 forKeyPath:@"endRenderTime"
-                    options:NSKeyValueObservingOptionNew
-                    context:nil];
 #endif
 	if( im == nil )
 	{

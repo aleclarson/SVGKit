@@ -1,5 +1,4 @@
 #import "SVGKFastImageView.h"
-#import "CATransaction+Private.h"
 
 @interface SVGKFastImageView ()
 @property(nonatomic,readwrite) NSTimeInterval timeIntervalForLastReRenderOfSVGFromMemory;
@@ -284,10 +283,6 @@
 	
 	self.endRenderTime = [NSDate date];
 	self.timeIntervalForLastReRenderOfSVGFromMemory = [self.endRenderTime timeIntervalSinceDate:self.startRenderTime];
-  
-  [CATransaction addCommitHandler:^{
-    [[NSNotificationCenter defaultCenter] postNotificationName:SVGKImageViewDidDrawNotification object:self];
-  } forPhase:kCATransactionPhasePostCommit];
 }
 
 #if SVGKIT_MAC
